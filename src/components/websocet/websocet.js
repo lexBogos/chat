@@ -1,6 +1,7 @@
 import React from 'react';
 import Websocket from 'react-websocket';
 import './websocket.css';
+import moment from 'moment';
 
 
 class WebsocketComp extends React.Component {
@@ -20,16 +21,16 @@ class WebsocketComp extends React.Component {
 
 
     render() {
-        return <div>
+        return <div className = 'chatContainer'>
                  <Websocket url='ws://st-chat.shas.tel'
                  onMessage={(data) => {this.handleData(data)}}
                 />
                 {this.state.messageList.map((mes) => {return (
                         <div className='messageContainer' key={mes.id}>
-                            <div className='time'>time:{mes.time}</div>
-                            <div className='id'>id:{mes.id}</div>
-                            <div className='from'>from:{mes.from}</div>
-                            <div className='message'>message:{mes.message}</div>
+                            <div className='time'>{moment(mes.time).format('MMMM Do YYYY, h:mm:ss a')}</div>
+                            {/* <div className='id'>id:{mes.id}</div> */}
+                            <div className='from'>{mes.from}</div>
+                            <div className='message'>{mes.message}</div>
                         </div>
                       )})}
                </div>

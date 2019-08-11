@@ -1,6 +1,7 @@
 
 const initialState = {
-    messages: []
+    messages: [],
+    loading: true
 }
 
 const reducer  = (state=initialState, action) => {
@@ -8,7 +9,8 @@ const reducer  = (state=initialState, action) => {
     switch (action.type) {
         case 'MESSAGES_LOADED':
             return {
-                messages: action.payload
+                messages: action.payload,
+                loading: false
             };
             default:
                     return state;  

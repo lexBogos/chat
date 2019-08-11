@@ -1,3 +1,3 @@
-import withBookStoreService from './with-bookstore- sevice'
+import withMessageStoreService from './with-messagestore-service'
 
-export {withBookStoreService};
+export default withMessageStoreService;

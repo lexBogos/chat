@@ -8,6 +8,7 @@ const reducer  = (state=initialState, action) => {
 
     switch (action.type) {
         case 'MESSAGES_LOADED':
+            console.log()
             return {
                 messages: action.payload,
                 loading: false

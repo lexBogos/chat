@@ -7,9 +7,15 @@
     margin-top: 15px;
     margin-bottom: 15px;
     border-bottom: 1px solid gainsboro;
-    
+    cursor: pointer;   
 }
-.chatContainer{
-    height: 80vh;
-    overflow: scroll;
+
+
+.from{
+    text-align: right;
+    word-wrap: break-word;
+}
+
+.message{
+    word-wrap: break-word;
 }

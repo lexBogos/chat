@@ -1,14 +1,14 @@
 import React from 'react';
+import './message-list-item.css';
 
 const MessageListItem = ({messageObj}) => {
 
-    const {time, id, from, message} = messageObj;
+    const {time, from, message} = messageObj;
 
-    return(<div>
-                <div>{time}</div>
-                <div>{id}</div>
-                <div>{from}</div>
-                <div>{message}</div>
+    return(<div className='messageContainer'>
+                <div className='time'>{time}</div>
+                <div className='from'>{from}</div>
+                <div className='message'>{message}</div>
            </div>)
 }
 

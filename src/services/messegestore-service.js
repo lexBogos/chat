@@ -1,17 +1,29 @@
 // import React, {Component} from 'react';
 // import Websocket from 'react-websocket';
 import moment from 'moment';
+import store from '../store';
+import {messagesLoaded}  from  '../actions';
 
-export default class MessagestoreService {
+
+class MessagestoreService {
     data  = []; 
 
     handleData = (data) => {
+      
       let result = JSON.parse(data).reverse();
       result.map((mes) => {return mes.time = moment(mes.time).format('MMMM Do YYYY, h:mm:ss a')})
       const oldState = this.data;
       const resArr = [...oldState, ...result];
       this.data = resArr;
+      // console.log(resArr[resArr.length-1]);
+      store.dispatch(messagesLoaded(this.data));
+      return this.data;
+    
     }
+    sendMessage(){
+
+    }
+
 
     getMessages() {
       let socket = new WebSocket("ws://st-chat.shas.tel");
@@ -33,16 +45,15 @@ export default class MessagestoreService {
         console.log("Ошибка " + error);
       };
 
-
       return new Promise((resolve, reject) => {
         socket.onmessage = (e) => {
           if (e.data) {
-             console.log('vse ok');
-             this.handleData(e.data)
-             resolve(e.data);
+             resolve(this.handleData(e.data));
             }
           else(reject('Ne ok'))}
         })
-         .then(()=>{return this.data})
     }
   }
+
+
+  export default MessagestoreService;

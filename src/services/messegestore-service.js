@@ -7,6 +7,11 @@ import {messagesLoaded, lostConnection, restoreConnection}  from  '../actions';
 
 class MessagestoreService {
     data  = []; 
+    socket;
+
+  
+
+      
 
     handleData = (data) => {
       
@@ -20,15 +25,15 @@ class MessagestoreService {
     }
 
     initialConnection = (url) => {
-      let socket = new WebSocket(url);
+      this.socket = new WebSocket(url);
 
-      socket.onopen = () => {
+      this.socket.onopen = () => {
         console.log("Соединение установлено.");
         console.log(store.getState());
         store.dispatch(restoreConnection());
       };
 
-      socket.onclose = (event) => {
+      this.socket.onclose = (event) => {
         if (event.wasClean) {
           console.log('Соединение закрыто чисто');
         } else {
@@ -39,13 +44,13 @@ class MessagestoreService {
         this.tryToReonnect()
       };
 
-      socket.onerror = (error) => {
+      this.socket.onerror = (error) => {
         console.log("Ошибка " + error);
         store.dispatch(lostConnection());
         this.tryToReonnect()
       };
 
-      return socket
+      return this.socket
     }
 
 
@@ -56,12 +61,12 @@ class MessagestoreService {
       else{console.log(store.getState());}
     }
 
-    sendMessage = (message) =>{
+    sendMessage = (from, message) =>{
       console.log(message)
-      // socket.send(JSON.stringify({
-      //   from: 'cd',
-      //   message: 'www'
-      // }))
+      this.socket.send(JSON.stringify({
+        from: from,
+        message: message
+      }))
     }
 
 

@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
 import withMessageStoreService  from '../hoc';
+import '../../services/messegestore-service';
 
 import './entry-field.css'
 
  class EntryField extends Component {
 
     
+    
+        
+            
+        
+
+
     state = {
         inputValue: '',
         field:''
@@ -23,7 +30,6 @@ import './entry-field.css'
         if(this.state.inputValue){
             const elem = this.state.field;
             const e =  new KeyboardEvent("keydown", {bubbles : true, cancelable : true, keyCode : 13, shiftKey : false});
-            // console.log(e);
             elem.dispatchEvent(e);
         }
     }    
@@ -38,6 +44,7 @@ import './entry-field.css'
                     stringWithoutSpace = stringWithoutSpace.trim();
                     if(stringWithoutSpace){
                         //cod dlya opravki
+                        this.sendMessage('Pashok' ,this.state.inputValue)
                     }
                 }
                 // console.log(e.target.value)
@@ -49,9 +56,9 @@ import './entry-field.css'
         }
     }
         
-    sendMessage = () => {
+    sendMessage = (from, message) => {
             const {messagestoreService} = this.props;
-            messagestoreService.sendMessage();
+            messagestoreService.sendMessage(from, message);
             }
 
 

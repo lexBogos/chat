@@ -2,7 +2,8 @@
 const initialState = {
     messages: [],
     loading: true,
-    connection: false
+    connection: false,
+    nickName: 'defaultNick',
 }
 
 const reducer  = (state=initialState, action) => {
@@ -13,7 +14,8 @@ const reducer  = (state=initialState, action) => {
             return {
                 messages: action.payload,
                 loading: false,
-                connection: true
+                connection: true,
+                nickName: 'defaultNick'
             };
 
         case 'CONNECTION_LOST':
@@ -28,7 +30,13 @@ const reducer  = (state=initialState, action) => {
                 return {
                     ...state,
                     connection: action.connection
-                    };                 
+                    };           
+        case 'NICK_CHANGE':
+                    console.log(state)
+                    return {
+                    ...state,
+                    nickName: action.changenickName
+                    };                      
 
             default:
                     return state;  

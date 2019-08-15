@@ -61,7 +61,15 @@ class MessagestoreService {
       else{console.log(store.getState());}
     }
 
-    sendMessage = (from, message) =>{
+    sendMessage = (message) =>{
+      let from;
+      console.log(store.getState())
+      if (JSON.parse(localStorage.getItem('stateObj')).nickName){
+        from = JSON.parse(localStorage.getItem('stateObj')).nickName;
+      }
+      else{
+        from = store.getState().nickName === 'defaultNick'
+      }
       console.log(message)
       this.socket.send(JSON.stringify({
         from: from,

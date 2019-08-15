@@ -2,16 +2,11 @@ import React, {Component} from 'react';
 import withMessageStoreService  from '../hoc';
 import '../../services/messegestore-service';
 
+
+
 import './entry-field.css'
 
  class EntryField extends Component {
-
-    
-    
-        
-            
-        
-
 
     state = {
         inputValue: '',
@@ -44,7 +39,7 @@ import './entry-field.css'
                     stringWithoutSpace = stringWithoutSpace.trim();
                     if(stringWithoutSpace){
                         //cod dlya opravki
-                        this.sendMessage('Pashok' ,this.state.inputValue)
+                        this.sendMessage(this.state.inputValue)
                     }
                 }
                 // console.log(e.target.value)
@@ -74,5 +69,8 @@ import './entry-field.css'
     }
 }
 
+
+
+
 // onClick = {() => sendMessage(textarea.value)}
-export default withMessageStoreService()((EntryField));
+export default withMessageStoreService()(EntryField);

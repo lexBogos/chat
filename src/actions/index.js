@@ -20,9 +20,17 @@ const restoreConnection = () => {
     }
 }
 
+const changeNickName = (newNick) => {
+    return {
+        type: 'NICK_CHANGE',
+        nickName: newNick
+    }
+}
+
 
 export {
     messagesLoaded,
     lostConnection,
-    restoreConnection
+    restoreConnection,
+    changeNickName
 };

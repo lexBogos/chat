@@ -1,12 +1,44 @@
 header{
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    height: 10vh;
-    background-color: #F2F7F8;
-    font-size: 2em;
-
+    margin: 0 auto;
+    height: 48px;
+    background: #5682a3;
 }
+
+header:hover{
+    background:#497799
+}
+
+.inputNickName{
+    width:50%;
+}
+
+
+.nickNameContainer{
+    margin-right: 3%;
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 header a {
     text-decoration: none;
+    display: inline-block;
+    color: #b9cfe3;
+    overflow: hidden;
+    font-weight: bold;
+    padding: 16px 19px;
+    font-size: 14px;
 }
 
-.logo{background-image: url(./rocket-ship-logo.jpg);}
+
+    
+header a:hover {
+    text-decoration: none;
+    color: #fff;
+    text-shadow: 1px 1px 2px #333, 0 0 .65px #333;
+    transition: 1s;
+}

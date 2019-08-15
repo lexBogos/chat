@@ -8,7 +8,6 @@ import './home-page.css';
 const HomePage = () => {
     return <>
         <Header />
-        HomePage
         <main>
          <MessageList q='1'/>
          <EntryField />

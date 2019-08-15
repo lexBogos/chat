@@ -1,5 +1,7 @@
 .chatContainer{
-    height: 80vh;
+    height: 70vh;
     overflow: hidden;
-    overflow-y: scroll
+    overflow-y: scroll;
+    width: 90%;
+    margin: auto;
 }

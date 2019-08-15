@@ -2,7 +2,7 @@
 // import Websocket from 'react-websocket';
 import moment from 'moment';
 import store from '../store';
-import {messagesLoaded}  from  '../actions';
+import {messagesLoaded, lostConnection, restoreConnection}  from  '../actions';
 
 
 class MessagestoreService {
@@ -15,21 +15,17 @@ class MessagestoreService {
       const oldState = this.data;
       const resArr = [...oldState, ...result];
       this.data = resArr;
-      // console.log(resArr[resArr.length-1]);
       store.dispatch(messagesLoaded(this.data));
       return this.data;
-    
-    }
-    sendMessage(){
-
     }
 
-
-    getMessages() {
-      let socket = new WebSocket("ws://st-chat.shas.tel");
+    initialConnection = (url) => {
+      let socket = new WebSocket(url);
 
       socket.onopen = () => {
         console.log("Соединение установлено.");
+        console.log(store.getState());
+        store.dispatch(restoreConnection());
       };
 
       socket.onclose = (event) => {
@@ -39,11 +35,38 @@ class MessagestoreService {
           console.log('Обрыв соединения'); 
         }
         console.log('Код: ' + event.code + ' причина: ' + event.reason);
+        store.dispatch(lostConnection());
+        this.tryToReonnect()
       };
-      
+
       socket.onerror = (error) => {
         console.log("Ошибка " + error);
+        store.dispatch(lostConnection());
+        this.tryToReonnect()
       };
+
+      return socket
+    }
+
+
+    tryToReonnect = () => {
+      if(!store.getState().connection){
+        setTimeout(this.getMessages(), 3000)
+      }
+      else{console.log(store.getState());}
+    }
+
+    sendMessage = (message) =>{
+      console.log(message)
+      // socket.send(JSON.stringify({
+      //   from: 'cd',
+      //   message: 'www'
+      // }))
+    }
+
+
+    getMessages() {
+      let socket = this.initialConnection("ws://st-chat.shas.tel");
 
       return new Promise((resolve, reject) => {
         socket.onmessage = (e) => {

@@ -38,7 +38,6 @@ import './entry-field.css'
                     let stringWithoutSpace = this.state.inputValue;
                     stringWithoutSpace = stringWithoutSpace.trim();
                     if(stringWithoutSpace){
-                        //cod dlya opravki
                         this.sendMessage(this.state.inputValue)
                     }
                 }

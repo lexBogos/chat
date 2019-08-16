@@ -6,6 +6,7 @@ import {messagesLoaded}  from  '../../actions';
 import {bindActionCreators} from 'redux';
 import Spinner  from '../spinner';
 import './message-list.css';
+// import  Scroll  from  'react-scroll';
 
 class MessageList extends Component {
 
@@ -14,26 +15,37 @@ class MessageList extends Component {
         this.state = {
             messageList: []
         }
+        this.myRef = React.createRef()
     }
 
     componentDidMount(){
     const {messagestoreService, messagesLoaded} = this.props;
          messagestoreService.getMessages().then((data) => messagesLoaded(data));
+         
+    }
+
+    componentDidUpdate(){
+        this.myRef.current.scrollTop = this.myRef.current.scrollHeight;
+    //    console.log(this.myRef.current.scrollTop)
+    //    console.log(this.myRef.current.scrollTop)
     }
 
     render () {
          const {messages, loading} = this.props;
          if(loading){return <Spinner />}
+         
          return (
-            <div>
-                   <div className = 'chatContainer'>
+            <> 
+                <div className = 'chatContainer' ref={this.myRef}>
                    { messages.map((message) => {
                         return (
                             <div key={message.id}><MessageListItem messageObj={message}/></div>
                         )
                     })}
-                    </div>
-            </div>
+                  
+                    
+                </div>
+            </>
          ); 
     }
 }

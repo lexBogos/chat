@@ -8,7 +8,7 @@ const withMessageStoreService = () => (Wrapped) => {
             <MessagestoreServiceConsumer>
                 {
                     (messagestoreService) => {
-                        console.log(props)
+                        // console.log(props)
                         return <Wrapped {...props} messagestoreService={messagestoreService}/>
                     }
                 }

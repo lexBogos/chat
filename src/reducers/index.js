@@ -10,7 +10,6 @@ const reducer  = (state=initialState, action) => {
 
     switch (action.type) {
         case 'MESSAGES_LOADED':
-            console.log(state)
             return {
                 messages: action.payload,
                 loading: false,
@@ -19,20 +18,17 @@ const reducer  = (state=initialState, action) => {
             };
 
         case 'CONNECTION_LOST':
-                console.log(state)
                 return {
                 ...state,
                 connection: action.connection
                 };    
 
         case 'CONNECTION_RESTORE':
-                console.log(state)
                 return {
                     ...state,
                     connection: action.connection
                     };           
         case 'NICK_CHANGE':
-                    console.log(state)
                     return {
                     ...state,
                     nickName: action.changenickName

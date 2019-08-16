@@ -6,7 +6,6 @@ import {messagesLoaded}  from  '../../actions';
 import {bindActionCreators} from 'redux';
 import Spinner  from '../spinner';
 import './message-list.css';
-// import  Scroll  from  'react-scroll';
 
 class MessageList extends Component {
 
@@ -26,8 +25,6 @@ class MessageList extends Component {
 
     componentDidUpdate(){
         this.myRef.current.scrollTop = this.myRef.current.scrollHeight;
-    //    console.log(this.myRef.current.scrollTop)
-    //    console.log(this.myRef.current.scrollTop)
     }
 
     render () {
@@ -42,8 +39,6 @@ class MessageList extends Component {
                             <div key={message.id}><MessageListItem messageObj={message}/></div>
                         )
                     })}
-                  
-                    
                 </div>
             </>
          ); 

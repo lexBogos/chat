@@ -1,5 +1,3 @@
-// import React, {Component} from 'react';
-// import Websocket from 'react-websocket';
 import moment from 'moment';
 import store from '../store';
 import {messagesLoaded, lostConnection, restoreConnection}  from  '../actions';
@@ -10,9 +8,6 @@ class MessagestoreService {
     socket;
 
   
-
-      
-
     handleData = (data) => {
       
       let result = JSON.parse(data).reverse();
@@ -29,7 +24,7 @@ class MessagestoreService {
 
       this.socket.onopen = () => {
         console.log("Соединение установлено.");
-        console.log(store.getState());
+        // console.log(store.getState());
         store.dispatch(restoreConnection());
       };
 
@@ -63,14 +58,14 @@ class MessagestoreService {
 
     sendMessage = (message) =>{
       let from;
-      console.log(store.getState())
+      // console.log(store.getState())
       if (JSON.parse(localStorage.getItem('stateObj')).nickName){
         from = JSON.parse(localStorage.getItem('stateObj')).nickName;
       }
       else{
         from = store.getState().nickName === 'defaultNick'
       }
-      console.log(message)
+      // console.log(message)
       this.socket.send(JSON.stringify({
         from: from,
         message: message

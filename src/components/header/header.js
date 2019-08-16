@@ -19,7 +19,7 @@ updateNickNameValue = (event) => {
 }
 
 restorePlaceholder = () => {
-    if (JSON.parse(localStorage.getItem('stateObj')).nickName){
+    if (JSON.parse(localStorage.getItem('stateObj'))){
         return JSON.parse(localStorage.getItem('stateObj')).nickName;
       }
     else{

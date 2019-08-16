@@ -30,7 +30,6 @@ import './entry-field.css'
     }    
 
     enterPress = (e) => {
-        console.log(e.keyCode)
         if (e.keyCode===13){
             if(!e.shiftKey){
                 e.preventDefault();
@@ -54,7 +53,7 @@ import './entry-field.css'
             const {messagestoreService} = this.props;
             messagestoreService.sendMessage(from, message);
             }
-
+ 
 
     render(){
         return <div className = 'textareaContainer'>

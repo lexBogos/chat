@@ -1,11 +1,13 @@
 import moment from 'moment';
 import store from '../store';
 import {messagesLoaded, lostConnection, restoreConnection}  from  '../actions';
+import notifyMe from './notification'
 
 
 class MessagestoreService {
     data  = []; 
     socket;
+    onmessage = false;
 
   
     handleData = (data) => {
@@ -16,6 +18,8 @@ class MessagestoreService {
       const resArr = [...oldState, ...result];
       this.data = resArr;
       store.dispatch(messagesLoaded(this.data));
+      const {from, message} = this.data[this.data.length-1]
+      notifyMe(from, message)
       return this.data;
     }
 
@@ -56,6 +60,9 @@ class MessagestoreService {
       else{console.log(store.getState());}
     }
 
+
+
+
     sendMessage = (message) =>{
       let from;
       // console.log(store.getState())
@@ -77,11 +84,16 @@ class MessagestoreService {
       let socket = this.initialConnection("ws://st-chat.shas.tel");
 
       return new Promise((resolve, reject) => {
-        socket.onmessage = (e) => {
-          if (e.data) {
-             resolve(this.handleData(e.data));
-            }
-          else(reject('Ne ok'))}
+          console.log(this.onmessage)
+          if(!this.onmessage){
+            this.onmessage = true;
+            socket.onmessage = (e) => {
+              if (e.data) {
+                resolve(this.handleData(e.data));
+                }
+              else(reject('Ne ok'))}
+          }
+      
         })
     }
   }

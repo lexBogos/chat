@@ -1,8 +1,8 @@
 import moment from 'moment';
 import store from '../store';
 import {messagesLoaded, lostConnection, restoreConnection}  from  '../actions';
-import notifyMe from './notification'
-
+import notifyMe from './notification';
+;
 
 class MessagestoreService {
     data  = []; 
@@ -20,6 +20,7 @@ class MessagestoreService {
       store.dispatch(messagesLoaded(this.data));
       const {from, message} = this.data[this.data.length-1]
       notifyMe(from, message)
+     
       return this.data;
     }
 

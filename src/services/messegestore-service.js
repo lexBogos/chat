@@ -19,6 +19,7 @@ class MessagestoreService {
       this.data = resArr;
       store.dispatch(messagesLoaded(this.data));
       const {from, message} = this.data[this.data.length-1]
+      console.log(this.data.length)
       notifyMe(from, message)
      
       return this.data;
@@ -55,23 +56,21 @@ class MessagestoreService {
 
 
     tryToReonnect = () => {
-      if(!store.getState().connection){
-        setTimeout(this.getMessages(), 3000)
-      }
-      else{console.log(store.getState());}
+      setTimeout(this.getMessages, 2000)
+       return  
+        
+      
+      // else{console.log(store.getState());}
     }
-
-
-
 
     sendMessage = (message) =>{
       let from;
       // console.log(store.getState())
-      if (JSON.parse(localStorage.getItem('stateObj')).nickName){
+      if (JSON.parse(localStorage.getItem('stateObj'))){
         from = JSON.parse(localStorage.getItem('stateObj')).nickName;
       }
       else{
-        from = store.getState().nickName === 'defaultNick'
+        from = store.getState().nickName
       }
       // console.log(message)
       this.socket.send(JSON.stringify({
@@ -81,19 +80,20 @@ class MessagestoreService {
     }
 
 
-    getMessages() {
+    getMessages = () => {
       let socket = this.initialConnection("ws://st-chat.shas.tel");
 
       return new Promise((resolve, reject) => {
           console.log(this.onmessage)
-          if(!this.onmessage){
-            this.onmessage = true;
+          // if(!this.onmessage){
+          //   this.onmessage = true;
+            this.data = [];
             socket.onmessage = (e) => {
               if (e.data) {
                 resolve(this.handleData(e.data));
                 }
               else(reject('Ne ok'))}
-          }
+          // }
       
         })
     }

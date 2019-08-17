@@ -27,7 +27,6 @@ const changeNickName = (newNick) => {
     }
 }
 
-
 export {
     messagesLoaded,
     lostConnection,

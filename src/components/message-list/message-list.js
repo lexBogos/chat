@@ -11,9 +11,9 @@ class MessageList extends Component {
 
     constructor(){
         super();
-        this.state = {
-            messageList: []
-        }
+        // this.state = {
+        //     messageList: []
+        // }
         this.myRef = React.createRef()
     }
 

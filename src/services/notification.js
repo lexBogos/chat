@@ -13,6 +13,7 @@ function notifyMe(nick, message) {
     }
     
       if (document[hidden]) {notifyMein(nick, message)} 
+     
 
 
 }
@@ -24,7 +25,10 @@ function notifyMein(nick, message) {
     }
   
     else if (window.Notification.permission === "granted") {
-      const notification = new Notification(`${nick}\n${message}`);
+      const notification = new Notification(`${nick}`, {
+        icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
+        body: message,
+       });
     }
   
     else if (Notification.permission !== 'denied') {

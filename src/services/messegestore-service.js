@@ -107,7 +107,7 @@ class MessagestoreService {
 
 
     getMessages = () => {
-      let socket = this.initialConnection("ws://st-chat.shas.tel");
+      let socket = this.initialConnection("wss://wssproxy.herokuapp.com/");
 
       return new Promise((resolve, reject) => {
           // console.log(this.onmessage)

@@ -5,6 +5,7 @@
     display: flex;
     justify-content: space-between;
     height: 14vh;
+    align-items: center;
 }
 
 textarea{
@@ -17,13 +18,38 @@ textarea{
     height: 70%; 
 }
 
-.textareaContainer button {
-    height: 60%; 
-}
+
 
 
 textarea:focus
 {
   outline: none;
   border-bottom: 2px solid #499DDB;
+}
+.composerEmoji{
+    user-select: none;
+    height: 30px;
+    cursor: pointer;
+}
+.composerEmoji:hover{
+    color: orchid; 
+}
+
+.picker{
+    top: 25%;
+    position: fixed;
+    z-index:99999999;
+    color: green;
+}
+.buttonSend{
+    color: #499dd9;
+    font-size: 17px;
+    background: transparent;
+    height: 30px;
+    border: none;
+
+}
+.buttonSend:hover{
+    color: #72a0c7;
+
 }

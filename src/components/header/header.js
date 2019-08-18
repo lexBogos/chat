@@ -38,7 +38,7 @@ render(){
                     type = 'text'
                     placeholder= {this.restorePlaceholder()}>
                     </input>
-                    <button onClick={() => {
+                    <button className='buttonChangeNick' onClick={() => {
                                                 changeNickName(this.state.nickName);
                                                 saveObj(this.state.nickName)
                                             

@@ -6,8 +6,8 @@ const MessageListItem = ({messageObj}) => {
     const {time, from, message} = messageObj;
 
     return(<div className='messageContainer'>
-                <div className='time'>{time}</div>
                 <div className='from'>{from}</div>
+                <div className='time'>{time}</div>
                 <div className='message'>{message}</div>
            </div>)
 }

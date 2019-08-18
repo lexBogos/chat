@@ -1,6 +1,6 @@
 .messageContainer{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    width: 80%;
+    width: 95%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-row-gap: 50px;
@@ -8,14 +8,19 @@
     margin-bottom: 15px;
     border-bottom: 1px solid gainsboro;
     cursor: pointer;   
+    padding-bottom: 35px;
 }
 
 
 .from{
-    text-align: right;
+    text-align: left;
     word-wrap: break-word;
+    color: #3a6d99;
+    font-weight: 700;
 }
-
+.time{
+    text-align: right; 
+}
 .message{
     word-wrap: break-word;
 }

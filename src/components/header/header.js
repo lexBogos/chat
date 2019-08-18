@@ -29,6 +29,7 @@ restorePlaceholder = () => {
 
 render(){
     return(<header>
+        {/* <div className='statusOnline'></div> */}
             <a className='logo' href='#'>Chat</a>
                 <div className='nickNameContainer'>
                     <input 

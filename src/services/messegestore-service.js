@@ -7,7 +7,8 @@ import notifyMe from './notification';
 class MessagestoreService {
     data  = []; 
     socket;
-    onmessage = false;
+    arrayForSendingOffline = [];
+    // onmessage = false;
 
   
     handleData = (data) => {
@@ -25,14 +26,30 @@ class MessagestoreService {
       return this.data;
     }
 
+    onlineStatus = () => {
+        this.arrayForSendingOffline.map((mes) => {
+        const {from, message} = mes;
+        this.socket.send(JSON.stringify({
+          from: from,
+          message: message
+        }))
+      })
+      this.arrayForSendingOffline = [];
+    }
+
     initialConnection = (url) => {
       this.socket = new WebSocket(url);
 
       this.socket.onopen = () => {
         console.log("Соединение установлено.");
-        // console.log(store.getState());
+        console.log(store.getState());
         store.dispatch(restoreConnection());
       };
+      
+      window.addEventListener('online',  () => {this.onlineStatus()});
+      // window.addEventListener('offline',  () => {this.onlineStatus()});
+
+
 
       this.socket.onclose = (event) => {
         if (event.wasClean) {
@@ -48,7 +65,7 @@ class MessagestoreService {
       this.socket.onerror = (error) => {
         console.log("Ошибка " + error);
         store.dispatch(lostConnection());
-        this.tryToReonnect()
+        // this.tryToReonnect()
       };
 
       return this.socket
@@ -65,7 +82,8 @@ class MessagestoreService {
 
     sendMessage = (message) =>{
       let from;
-      // console.log(store.getState())
+      console.log('перед отправкой', navigator.onLine)
+      console.log('перед отправкой', store.getState())
       if (JSON.parse(localStorage.getItem('stateObj'))){
         from = JSON.parse(localStorage.getItem('stateObj')).nickName;
       }
@@ -73,10 +91,18 @@ class MessagestoreService {
         from = store.getState().nickName
       }
       // console.log(message)
-      this.socket.send(JSON.stringify({
-        from: from,
-        message: message
-      }))
+      if (navigator.onLine) {
+        this.socket.send(JSON.stringify({
+          from: from,
+          message: message
+        }))
+      }
+      else{
+        this.arrayForSendingOffline.push({
+          from: from,
+          message: message
+        })
+      }
     }
 
 
@@ -84,7 +110,7 @@ class MessagestoreService {
       let socket = this.initialConnection("ws://st-chat.shas.tel");
 
       return new Promise((resolve, reject) => {
-          console.log(this.onmessage)
+          // console.log(this.onmessage)
           // if(!this.onmessage){
           //   this.onmessage = true;
             this.data = [];
@@ -92,7 +118,7 @@ class MessagestoreService {
               if (e.data) {
                 resolve(this.handleData(e.data));
                 }
-              else(reject('Ne ok'))}
+              else(reject('Данные не получены'))}
           // }
       
         })

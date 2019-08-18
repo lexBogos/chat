@@ -6,7 +6,10 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
+    "redux": "^4.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,8 +37,6 @@
     "prop-types": "^15.7.2",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
-    "react-scroll": "^1.7.12",
-    "react-websocket": "^2.0.1",
     "redux": "^4.0.4"
   }
 }

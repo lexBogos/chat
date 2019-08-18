@@ -49,8 +49,6 @@ class MessageList extends Component {
 
          return (
                 <div className = 'chatContainer' ref={this.myRef} onScroll={() => {
-                        //  console.log(this.myRef.current.scrollTop)
-                        //  console.log(this.state.numberOfShowedMessages)
                         // console.log(this.myRef.current.scrollHeight - this.myRef.current.scrollTop)
                         //   console.log(this.myRef.current.scrollHeight)
                         if ((this.myRef.current.scrollHeight - this.myRef.current.scrollTop) > 600) {

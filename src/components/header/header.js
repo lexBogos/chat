@@ -29,7 +29,7 @@ restorePlaceholder = () => {
 
 render(){
     return(<header>
-            <a className='logo' href='#'>Chat</a>
+            <span className='logo'>Chat</span>
                 <div className='nickNameContainer'>
                     <input 
                     onChange = {(event) => this.updateNickNameValue(event)}

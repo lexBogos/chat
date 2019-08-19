@@ -27,7 +27,7 @@ header:hover{
     align-items: center;
 }
 
-header a {
+header span {
     text-decoration: none;
     display: inline-block;
     color: #b9cfe3;
@@ -35,6 +35,7 @@ header a {
     font-weight: bold;
     padding: 16px 19px;
     font-size: 14px;
+    user-select: none;
 }
 
 
@@ -67,6 +68,3 @@ header a:hover {
     background: inherit;
     border: none; 
 }
-/* .buttonChangeNick:hover{
-    background:#497799;
-} */

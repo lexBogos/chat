@@ -28,7 +28,7 @@ class MessagestoreService {
     onlineStatus = () => {
         this.arrayForSendingOffline.map((mes) => {
         const {from, message} = mes;
-        this.socket.send(JSON.stringify({
+        return this.socket.send(JSON.stringify({
           from: from,
           message: message
         }))

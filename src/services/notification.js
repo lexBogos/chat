@@ -24,7 +24,7 @@ function notifyMein(nick, message) {
     }
   
     else if (window.Notification.permission === "granted") {
-      const notification = new Notification(`${nick}`, {
+      new Notification(`${nick}`, {
         icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ_g_gKhF1ECJhc8Pk96BElhyPNK0wovhwqAWov2TXYGigSMxEeA',
         body: message,
        });
@@ -33,7 +33,7 @@ function notifyMein(nick, message) {
     else if (Notification.permission !== 'denied') {
       Notification.requestPermission(function (permission) {
         if (permission === "granted") {
-          const notification = new Notification(`${nick}\n${message}`);
+          new Notification(`${nick}\n${message}`);
         }
       });
     }

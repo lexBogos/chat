@@ -28,19 +28,24 @@ textarea:focus
 }
 .composerEmoji{
     user-select: none;
-    height: 30px;
+    width: 22px;
+    height: 22px;
     cursor: pointer;
+    background-image: url(./emodji.png);
+    background-size: 40px 948px;
+    background-repeat: no-repeat;
+    background-position: -9px -335px;
 }
 .composerEmoji:hover{
-    color: orchid; 
+    background-position: -9px -367px;
 }
 
 .picker{
     top: 25%;
     position: fixed;
     z-index:99999999;
-    color: green;
 }
+
 .buttonSend{
     color: #499dd9;
     font-size: 17px;

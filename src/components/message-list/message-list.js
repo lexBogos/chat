@@ -26,9 +26,7 @@ class MessageList extends Component {
     }
 
     componentDidUpdate(){
-        console.log('update')
         if (this.OnTheBottom) {this.myRef.current.scrollTop = this.myRef.current.scrollHeight}
-        // this.myRef.current.scrollTop = this.myRef.current.scrollHeight;
     }
 
     render () {
@@ -49,8 +47,6 @@ class MessageList extends Component {
 
          return (
                 <div className = 'chatContainer' ref={this.myRef} onScroll={() => {
-                        // console.log(this.myRef.current.scrollHeight - this.myRef.current.scrollTop)
-                        //   console.log(this.myRef.current.scrollHeight)
                         if ((this.myRef.current.scrollHeight - this.myRef.current.scrollTop) > 600) {
                         this.OnTheBottom = false; 
                         }

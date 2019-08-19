@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {changeNickName}  from  '../../actions';
 import withMessageStoreService  from '../hoc';
-// import '../../services/messegestore-service';
+
 
 class Header extends React.Component{
 state = {
@@ -29,7 +29,6 @@ restorePlaceholder = () => {
 
 render(){
     return(<header>
-        {/* <div className='statusOnline'></div> */}
             <a className='logo' href='#'>Chat</a>
                 <div className='nickNameContainer'>
                     <input 
@@ -42,7 +41,9 @@ render(){
                                                 changeNickName(this.state.nickName);
                                                 saveObj(this.state.nickName)
                                             
-                                            }}>ChangeNick</button>
+                                            }}>
+                                                ChangeNick
+                                            </button>
             </div>
            </header>)
     }

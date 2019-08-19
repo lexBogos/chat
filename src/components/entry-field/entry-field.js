@@ -21,10 +21,8 @@ import './entry-field.css'
 
 
     updateInputValue = (event) => {
-            console.log(this.state)
             this.setState({
               inputValue: event.target.value,
-            //   field: event.target
             });
         }
 
@@ -62,30 +60,23 @@ import './entry-field.css'
             }
  
     addEmoji = (e) => {
-                console.log(e.native)
                 let emoji = e.native;
-                console.log(this.state.inputValue)
                 this.setState({
                     inputValue: this.state.inputValue + emoji
                 })
               }
             
     openEmoji = () => {
-       if(this.state.visible.display === 'none'){
+        if(this.state.visible.display === 'none'){
             this.setState({visible: {display: 'block'}}) 
-       }
-       else{this.setState({visible: {display: 'none'}})}
-        
-        
-        // console.log(this.emojiRef.current)
-              }
+        }
+        else{
+           this.setState({visible: {display: 'none'}})}
+        }
 
     componentDidMount(){
         this.setState({field:this.myRef.current})
-        // console.log(this.emojiRef.current)
-        // this.emojiRef.current.style = {display: 'none'}
-                     
-                }
+    }
 
 
 
@@ -95,7 +86,7 @@ import './entry-field.css'
                     <Picker onSelect={this.addEmoji} style={this.state.visible} ref={this.emojiRef} />
                 </div>
                 <div className = 'textareaContainer'>
-                <div className='composerEmoji' onClick = {this.openEmoji}><span>Emoji</span></div>
+                <div className='composerEmoji' onClick = {this.openEmoji}><i></i></div>
                 <textarea
                     ref={this.myRef}
                     value = {this.state.inputValue}
@@ -112,5 +103,5 @@ import './entry-field.css'
 
 
 
-// onClick = {() => sendMessage(textarea.value)}
+
 export default withMessageStoreService()(EntryField);

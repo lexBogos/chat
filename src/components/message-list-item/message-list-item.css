@@ -19,7 +19,10 @@
     font-weight: 700;
 }
 .time{
-    text-align: right; 
+    width: 130px;
+    text-align: right;
+    float: right;
+    font-size: 12px; 
 }
 .message{
     word-wrap: break-word;

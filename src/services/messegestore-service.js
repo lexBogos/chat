@@ -8,7 +8,7 @@ class MessagestoreService {
     data  = []; 
     socket;
     arrayForSendingOffline = [];
-    // onmessage = false;
+
 
   
     handleData = (data) => {
@@ -20,7 +20,6 @@ class MessagestoreService {
       this.data = resArr;
       store.dispatch(messagesLoaded(this.data));
       const {from, message} = this.data[this.data.length-1]
-      console.log(this.data.length)
       notifyMe(from, message)
      
       return this.data;
@@ -42,12 +41,10 @@ class MessagestoreService {
 
       this.socket.onopen = () => {
         console.log("Соединение установлено.");
-        console.log(store.getState());
         store.dispatch(restoreConnection());
       };
       
       window.addEventListener('online',  () => {this.onlineStatus()});
-      // window.addEventListener('offline',  () => {this.onlineStatus()});
 
 
 
@@ -65,7 +62,6 @@ class MessagestoreService {
       this.socket.onerror = (error) => {
         console.log("Ошибка " + error);
         store.dispatch(lostConnection());
-        // this.tryToReonnect()
       };
 
       return this.socket
@@ -75,22 +71,16 @@ class MessagestoreService {
     tryToReonnect = () => {
       setTimeout(this.getMessages, 2000)
        return  
-        
-      
-      // else{console.log(store.getState());}
     }
 
     sendMessage = (message) =>{
       let from;
-      console.log('перед отправкой', navigator.onLine)
-      console.log('перед отправкой', store.getState())
       if (JSON.parse(localStorage.getItem('stateObj'))){
         from = JSON.parse(localStorage.getItem('stateObj')).nickName;
       }
       else{
         from = store.getState().nickName
       }
-      // console.log(message)
       if (navigator.onLine) {
         this.socket.send(JSON.stringify({
           from: from,
@@ -110,17 +100,12 @@ class MessagestoreService {
       let socket = this.initialConnection("wss://wssproxy.herokuapp.com/");
 
       return new Promise((resolve, reject) => {
-          // console.log(this.onmessage)
-          // if(!this.onmessage){
-          //   this.onmessage = true;
             this.data = [];
             socket.onmessage = (e) => {
               if (e.data) {
                 resolve(this.handleData(e.data));
                 }
-              else(reject('Данные не получены'))}
-          // }
-      
+              else(reject('Данные не получены'))}    
         })
     }
   }

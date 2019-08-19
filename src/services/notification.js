@@ -1,7 +1,7 @@
 
 function notifyMe(nick, message) {
     let hidden, visibilityChange; 
-    if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
+    if (typeof document.hidden !== "undefined") { 
       hidden = "hidden";
       visibilityChange = "visibilitychange";
     } else if (typeof document.msHidden !== "undefined") {
@@ -19,14 +19,13 @@ function notifyMe(nick, message) {
 }
 
 function notifyMein(nick, message) {
-    console.log('note')
     if (!("Notification" in window)) {
       alert("This browser does not support desktop notification");
     }
   
     else if (window.Notification.permission === "granted") {
       const notification = new Notification(`${nick}`, {
-        icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
+        icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ_g_gKhF1ECJhc8Pk96BElhyPNK0wovhwqAWov2TXYGigSMxEeA',
         body: message,
        });
     }
@@ -42,23 +41,6 @@ function notifyMein(nick, message) {
 
 
 
-  // function notifyMe(nick, message) {
-  //   console.log('note')
-  //   if (!("Notification" in window)) {
-  //     alert("This browser does not support desktop notification");
-  //   }
-  
-  //   else if (window.Notification.permission === "granted") {
-  //     const notification = new Notification(`${nick}\n${message}`);
-  //   }
-  
-  //   else if (Notification.permission !== 'denied') {
-  //     Notification.requestPermission(function (permission) {
-  //       if (permission === "granted") {
-  //         const notification = new Notification(`${nick}\n${message}`);
-  //       }
-  //     });
-  //   }
-  // }    
+   
 
   export  default notifyMe;

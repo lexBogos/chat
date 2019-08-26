@@ -15,18 +15,20 @@ class MessageList extends Component {
             numberOfShowedMessages: 30
         }
         this.OnTheBottom = true; 
-        this.myRef = React.createRef()
+        this.myRef = React.createRef();
+        this.bootomPosition = '';
     }
 
     componentDidMount(){
     const {messagestoreService, messagesLoaded} = this.props;
          messagestoreService.getMessages().then((data) => messagesLoaded(data));
         //  this.myRef.current.scrollTop = this.myRef.current.scrollHeight;
-         
     }
 
     componentDidUpdate(){
-        if (this.OnTheBottom) {this.myRef.current.scrollTop = this.myRef.current.scrollHeight}
+        if (this.OnTheBottom) {
+            this.myRef.current.scrollTop = this.myRef.current.scrollHeight
+        }
     }
 
     render () {
@@ -47,11 +49,11 @@ class MessageList extends Component {
 
          return (
                 <div className = 'chatContainer' ref={this.myRef} onScroll={() => {
-                        if ((this.myRef.current.scrollHeight - this.myRef.current.scrollTop) > 600) {
-                        this.OnTheBottom = false; 
+                        if ((this.myRef.current.scrollHeight - this.myRef.current.scrollTop) === this.myRef.current.clientHeight) {
+                        this.OnTheBottom = true; 
                         }
                         else{
-                            this.OnTheBottom = true;
+                            this.OnTheBottom = false;
                         }
                         if (this.myRef.current.scrollTop < 100) {
                             if (arrayForLastMessages.length + 30 < messages.length ){
